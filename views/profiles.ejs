@@ -1,0 +1,117 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<style>
+.card {
+			display: flex;
+			flex-wrap: wrap;
+			flex-grow: 1; 
+			flex-basis: 200px;
+			margin-bottom: 	10px;
+		}	
+		.icons {
+			width: 50px;
+			height: 50px;
+		}
+		.vote {
+			max-width: 100%;
+			min-height: 0!important;
+			flex-grow: 0;
+			border-top: 1px solid rgba(0,0,0,.05)!important;
+			position: static;
+			background: 0 0;
+			width: auto;
+			margin: 0 0;
+			padding: .75em 1em;
+			top: 0;
+			left: 0;
+			color: rgba(0,0,0,.4);
+			-webkit-box-shadow: none;
+			box-shadow: none;
+			-webkit-transition: color .1s ease;
+			transition: color .1s ease;
+			display: inline;
+	}
+		.voteImage {
+			width: 100%;
+		}
+		.vote {
+			background-color: #fff;
+			outline: none;
+			border: none;
+			width: 100px;
+		}
+		.reserve {
+			background-color: #fff;
+			outline: none;
+			border: none;
+			width: fit-content;
+		}
+		.reserve:focus {
+			outline: none
+		}
+		.vote:focus {
+			outline: none
+		}
+		#right:hover {
+			background-color: green;
+		}
+		#wrong:hover {
+			background-color: red;
+		}
+		.reserveImg {
+			height: 100px;
+			width: auto;
+			margin-left: 50px;
+		}
+		.form {
+			display: inline;
+		}
+		.dark-mode {
+			filter: invert(1)
+		}
+		.invert {
+			filter: invert(1)
+		}
+</style>
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbar">
+  <a class="navbar-brand" href="/">EBS 1/4</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/profiles">Students</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		More
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/new">Create New</a>
+		  <a class="dropdown-item" href="/profile">My Profile</a>
+		  <a class="dropdown-item" href="/search">Search</a>
+		  <a onclick="dark()" class="dropdown-item" id="click" style="cursor: pointer">Dark Mode</a>
+          <a class="dropdown-item" href="/users/logout">Logout</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+	 <form class="form-inline my-2 my-lg-0 inverted" action="/profiles" method="GET">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search By User Name" aria-label="Search" name="username">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+</nav>
+	<% for(var i = 0; i < profiles.length; i++){ %>
+		<div class="card">
+	  <div class="card-body">
+		<h5 class="card-title"><%= profiles[i].name %></h5>
+		<p class="card-text"><%= profiles[i].bio %></p>
+		<a href="/profile/<%= profiles[i]._id %>" class="btn btn-primary inverted">Go To Profile</a>
+	  </div>
+	</div>
+<% } %>
+<%- include("./partials/footer.ejs") %>
